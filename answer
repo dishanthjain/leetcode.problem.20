@@ -1,0 +1,30 @@
+Code:
+
+class Solution {
+public:
+    bool isValid(string s) {
+        stack<char> st;
+
+        for (char c : s) {
+            if (c == '(' || c == '{' || c == '[') {
+                st.push(c);
+            } else {
+                if (st.empty())
+                    return false;
+
+                char top = st.top();
+                st.pop();
+
+                if ((c == ')' && top != '(') ||
+                    (c == '}' && top != '{') ||
+                    (c == ']' && top != '['))
+                    return false;
+            }
+        }
+
+        return st.empty();
+    }
+};
+
+ExplaiThe code uses a stack to store opening brackets. When a closing bracket appears, it checks whether it matches the most recent opening bracket; finally, the stack must be empty for the string to be valid.nation:
+
